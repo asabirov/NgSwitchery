@@ -26,7 +26,18 @@ angular.module('NgSwitchery', [])
             catch (e) {}
 
             var switcher;
+            var previousDisabledValue;
+            var trueValue, falseValue;
 
+            if (attrs.ngTrueValue) {
+              trueValue = $parse(attrs.ngTrueValue)(scope);
+            }
+
+            if (attrs.ngFalseValue) {
+              falseValue = $parse(attrs.ngFalseValue)(scope);
+            }
+
+            // Watch for attribute changes to recreate the switch if the 'disabled' attribute changes
             attrs.$observe('disabled', function(value) {
               if (!switcher) {
                 return;
@@ -49,10 +60,22 @@ angular.module('NgSwitchery', [])
                 // (re)create switcher to reflect latest state of the checkbox element
                 switcher = new $window.Switchery(elem[0], options);
                 var element = switcher.element;
-                element.checked = scope.initValue;
+
                 if (attrs.disabled) {
                   switcher.disable();
                 }
+
+                var checked = scope.initValue;
+
+                if (trueValue && scope.initValue == trueValue) {
+                  checked = true;
+                }
+
+                if (falseValue && scope.initValue == falseValue) {
+                  checked = false;
+                }
+
+                element.checked = checked;
 
                 switcher.setPosition(false);
                 element.addEventListener('change',function(evt) {
