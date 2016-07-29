@@ -1,0 +1,30 @@
+{
+  "name": "ng-switchery",
+  "version": "1.0.0-alpha8",
+  "description": "The standart angular implementation of switchery with ng-switchery",
+  "main": "gulpfile.js",
+  "directories": {
+    "example": "example"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "switchery",
+    "angularjs",
+    "ui",
+    "angular",
+    "directive",
+    "off",
+    "switch",
+    "button",
+    "checkbox",
+    "on",
+    "form"
+  ],
+  "license": "MIT"
+}
